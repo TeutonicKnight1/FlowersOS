@@ -1,0 +1,38 @@
+.cart__element {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 10px 10px 0 0;
+
+    &-div {
+      margin-right: 10px;
+      overflow: hidden;
+      border: 2px solid black;
+      border-radius: 100%;
+      width: 120px;
+      height: 200px;
+      display: flex;
+      flex-direction: row;
+
+      &__img {
+        width: 120px;
+      }
+    }
+
+    &-info {
+
+      &__title {
+        font-size: 26px;
+      }
+
+      &__price {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+
+      &__counter {
+        margin-top: 20px; 
+        display: flex;
+      }
+    }
+  }
