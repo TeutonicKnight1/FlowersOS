@@ -12,8 +12,20 @@ function cartReducer(state = initialState, action) {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload.id),
+        cart: state.cart.filter((item) => item.title !== action.payload.title && item.color !== action.payload.color),
       };
+
+    case "CHANGE_COUNT":
+      return {
+        ...state,
+        cart: state.cart
+          .map((item) =>
+            item.title === action.payload.title && item.color === action.payload.color
+              ? { ...item, count: action.payload.count }
+              : item
+          )
+          .filter((item) => item.count !== 0),
+      }
     default:
       return state;
   }

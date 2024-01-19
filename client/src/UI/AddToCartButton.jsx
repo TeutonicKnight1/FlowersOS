@@ -1,19 +1,18 @@
-import classes from "./addToCartButton.module.scss";
+import classes from "./moduleSCSS/addToCartButton.module.scss";
 import PropTypes from "prop-types";
 
 import plusIcon from "../assets/plusIcon.png";
 import minusIcon from "../assets/minusIcon.png";
 
 function AddToCartButton({ count, callback }) {
-
   function handleClickPlus() {
-    callback(count + 1);
+    callback((count) => count + 1);
   }
 
   function handleClickMinus() {
-    if ((count - 1) < 0) return;
+    if (count - 1 < 0) return;
 
-    callback(count - 1);
+    callback((count) => count - 1);
   }
 
   return (

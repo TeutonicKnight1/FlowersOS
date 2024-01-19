@@ -1,8 +1,10 @@
-import classes from './addToCartButton.module.scss';
+import PropTypes from 'prop-types';
+
+import classes from './moduleSCSS/addToCartButton.module.scss';
 import plusIcon from '../assets/plusIcon.png';
 import minusIcon from '../assets/minusIcon.png';
 
-function ChangeCartCounter(count, callback) {
+function ChangeCartCounter({count, callback}) {
     const handleClickPlus = () => {
         callback((count) => count + 1);   
     }
@@ -33,6 +35,11 @@ function ChangeCartCounter(count, callback) {
       </div>
     </>
   );
+}
+
+ChangeCartCounter.propTypes = {
+  count: PropTypes.number,
+  callback: PropTypes.func
 }
 
 export default ChangeCartCounter;

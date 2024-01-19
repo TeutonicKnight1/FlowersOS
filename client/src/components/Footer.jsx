@@ -1,9 +1,11 @@
 import '../styles/index.scss';
 
-function Footer() {
+import PropTypes from 'prop-types';
+
+function Footer({ isFooterSticky }) {
   return (
     <>
-      <div className="footer">
+      <div className="footer" style={{ position: isFooterSticky ? 'fixed' : 'static', bottom: isFooterSticky ? '0' : 'auto' }}>
         <div className="footer__copyright">
           <p className="footer__copyright-p">© 2023 ЧЁРНАЯ & РОЗА</p>
         </div>
@@ -18,6 +20,10 @@ function Footer() {
       </div>
     </>
   );
+}
+
+Footer.propTypes = {
+  isFooterSticky: PropTypes.bool.isRequired,
 }
 
 export default Footer;

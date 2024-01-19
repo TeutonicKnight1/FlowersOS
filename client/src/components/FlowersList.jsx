@@ -1,14 +1,15 @@
 import '../styles/index.scss';
 
-import dataFlowers from '../dataFlowers';
-
 import ListElement from './ListElement';
+
+import { useSelector } from 'react-redux';
 
 
 function FlowersList() {
+    const flowerList = useSelector((state) => state.mainListFlowers.flowersList);
     return (
         <>
-        {dataFlowers.map((flower) => (
+        {flowerList.map((flower) => (
             <ListElement key={flower.title} {...flower} />
         ))}
         </>

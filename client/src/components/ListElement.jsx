@@ -1,59 +1,39 @@
 import "../styles/index.scss";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ListColorButton from "../UI/ListColorButton";
 import AddToCartButton from "../UI/AddToCartButton";
 import { useSelector, useDispatch } from "react-redux";
+import addToCart from "../store/actions/addToCart";
 
 export default function ListElement({
+  id,
   title,
   description,
   image,
   price,
   colors,
+  count,
 }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
 
-  const [countFlowers, setCountFLowers] = useState(0);
+  const [itFirstRender, setItFirstRender] = useState(true);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [countFlowers, setCountFLowers] = useState(count);
 
   const handleColorButtonClick = (color) => {
     setSelectedColor(() => color);
   };
 
-  const addToCart = (flowers) => {
-    
-    setCountFLowers(() => flowers);
-
-    const findedItem = cart.find((item) => {
-      if (item.title === title && item.color === selectedColor) {
-        return item;
-      }
-    });
-
-    if (findedItem != undefined) {
-      findedItem.count = countFlowers;
-      console.log("findedItem", findedItem);
-    } else {
-      const newCartItem = {
-        title: title,
-        image: image,
-        price: price,
-        color: selectedColor,
-        count: countFlowers,
-      };
-
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: newCartItem,
-      });
-
-      console.log("cart", cart);
-      localStorage.setItem("cart", JSON.stringify([...cart, newCartItem]));
+  useEffect(() => {
+    if (itFirstRender) {
+      setItFirstRender(false);
+      return;
     }
-  };
+    addToCart(id, cart, dispatch, countFlowers, title, image, price, selectedColor);
+  }, [countFlowers]);
 
   return (
     <>
@@ -74,7 +54,10 @@ export default function ListElement({
               />
             </div>
             <div className="listElement__container-info__container-price">
-              <AddToCartButton count={countFlowers} callback={addToCart} />
+              <AddToCartButton
+                count={countFlowers}
+                callback={setCountFLowers}
+              />
               <p className="listElement__container-info__container-price-p">
                 ₽ {price}
               </p>
@@ -87,9 +70,11 @@ export default function ListElement({
 }
 
 ListElement.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   colors: PropTypes.array.isRequired,
+  count: PropTypes.number,
 };

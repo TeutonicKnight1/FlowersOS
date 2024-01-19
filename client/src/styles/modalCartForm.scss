@@ -1,0 +1,83 @@
+@import "../styles/colors.scss";
+
+.modalCartForm {
+  display: none;
+
+  &__active {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #919191b0;
+  }
+}
+
+.modalCartForm__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  height: 40%;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+
+  background-color: $white-gray;
+  border-radius: 10px;
+
+  &__form {
+    color: red;
+
+    &__label {
+      &__name {
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+
+        &__text {
+          margin-bottom: 5px;
+          font-size: 24px;
+        }
+
+        &__input {
+          border: 1px solid black;
+          border-radius: 10px;
+          font-size: 22px;
+          margin-bottom: 5px;
+        }
+      }
+
+      &__email {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+
+        &__text {
+          margin-bottom: 5px;
+          font-size: 24px;
+        }
+
+        &__input {
+          border: 1px solid black;
+          border-radius: 10px;
+          font-size: 22px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

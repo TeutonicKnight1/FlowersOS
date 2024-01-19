@@ -4,21 +4,12 @@ import { Link } from "react-router-dom";
 import burgerIcon from "../assets/burgerIcon.svg";
 import cartIcon from "../assets/cartIcon.png";
 function Header() {
-  const handleBurgerButtonClick = () => {
-    console.log(1);
-  };
-
-  const handleCartButtonClick = () => {
-    console.log(2);
-  };
-
   return (
     <>
       <header className="header">
         <div className="header__logo">
           <button
             className="header__logo__burger-button"
-            onClick={handleBurgerButtonClick}
           >
             <img
               className="header__logo__burger-button-icon"
@@ -30,7 +21,6 @@ function Header() {
             ЧЁРНАЯ & РОЗА
           </Link>
           <button
-            onClick={handleCartButtonClick}
             className="header__logo__cart-button"
           >
             <Link to="/cart">
